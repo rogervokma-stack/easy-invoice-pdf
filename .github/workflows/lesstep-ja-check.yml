@@ -1,0 +1,74 @@
+name: Lesstep ja check
+on:
+  push:
+    branches: [ci-ja-check]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - run: corepack enable && corepack install
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: out dir
+        run: mkdir -p /tmp/ja-pdf
+
+      - name: format (patch of what oxfmt would change)
+        run: |
+          pnpm format > /tmp/ja-pdf/format.txt 2>&1 || true
+          git diff > /tmp/ja-pdf/format.patch
+          git checkout -- .
+
+      - name: lint
+        run: pnpm lint > /tmp/ja-pdf/lint.txt 2>&1 || true
+
+      - name: type-check
+        run: pnpm type-check > /tmp/ja-pdf/type-check.txt 2>&1 || true
+
+      - name: knip
+        run: pnpm knip > /tmp/ja-pdf/knip.txt 2>&1 || true
+
+      - name: unit tests (whole suite, as upstream runs it)
+        run: pnpm vitest run --reporter=verbose --exclude "src/__lesstep_ci__/**" > /tmp/ja-pdf/vitest.txt 2>&1 || true
+
+      - name: Noto Sans JP from Google Fonts, served locally for the render check
+        run: |
+          mkdir -p /tmp/fonts
+          css=$(curl -sf "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700")
+          echo "$css" > /tmp/ja-pdf/fonts.css
+          urls=$(echo "$css" | grep -o "https://[^)]*")
+          set -- $urls
+          curl -sfL "$1" -o /tmp/fonts/NotoSansJP-Regular.ttf
+          curl -sfL "$2" -o /tmp/fonts/NotoSansJP-Bold.ttf
+          ls -l /tmp/fonts | tee /tmp/ja-pdf/fonts.txt
+          file /tmp/fonts/* | tee -a /tmp/ja-pdf/fonts.txt
+          sed -i 's#[$]{STATIC_ASSETS_URL}/NotoSansJP-Regular.ttf#/tmp/fonts/NotoSansJP-Regular.ttf#; s#[$]{STATIC_ASSETS_URL}/NotoSansJP-Bold.ttf#/tmp/fonts/NotoSansJP-Bold.ttf#' src/config.ts
+          grep -n "NotoSansJP" src/config.ts | tee -a /tmp/ja-pdf/fonts.txt
+
+      - name: render Japanese PDFs
+        run: pnpm vitest run src/__lesstep_ci__ --reporter=verbose > /tmp/ja-pdf/render.txt 2>&1 || true
+
+      - name: PDF to PNG
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils > /dev/null
+          for f in /tmp/ja-pdf/*.pdf; do pdftoppm -png -r 100 "$f" "${f%.pdf}"; done
+          ls -l /tmp/ja-pdf
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ja-check
+          path: /tmp/ja-pdf
