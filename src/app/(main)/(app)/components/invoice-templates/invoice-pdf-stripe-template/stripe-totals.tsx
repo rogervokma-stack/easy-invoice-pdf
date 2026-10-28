@@ -130,7 +130,8 @@ export function StripeVatSummaryTableTotals({
                 >
                   <View style={styles.vatColLabel}>
                     <Text style={styles.fontSize9}>
-                      {taxLabelText} ({item.vat}% on {formattedNetAmount})
+                      {taxLabelText} ({item.vat}% {t.stripe.taxOn}{" "}
+                      {formattedNetAmount})
                     </Text>
                   </View>
                   <View style={styles.vatColValue}>
