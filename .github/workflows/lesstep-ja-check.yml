@@ -34,16 +34,22 @@ jobs:
           git checkout -- .
 
       - name: lint
+        env:
+          SKIP_ENV_VALIDATION: "true"
         run: pnpm lint > /tmp/ja-pdf/lint.txt 2>&1 || true
 
       - name: type-check
+        env:
+          SKIP_ENV_VALIDATION: "true"
         run: pnpm type-check > /tmp/ja-pdf/type-check.txt 2>&1 || true
 
       - name: knip
+        env:
+          SKIP_ENV_VALIDATION: "true"
         run: pnpm knip > /tmp/ja-pdf/knip.txt 2>&1 || true
 
       - name: unit tests (whole suite, as upstream runs it)
-        run: pnpm vitest run --reporter=verbose --exclude "src/__lesstep_ci__/**" > /tmp/ja-pdf/vitest.txt 2>&1 || true
+        run: pnpm vitest run --reporter=verbose --exclude "**/__lesstep_ci__/**" > /tmp/ja-pdf/vitest.txt 2>&1 || true
 
       - name: Noto Sans JP from Google Fonts, served locally for the render check
         run: |
