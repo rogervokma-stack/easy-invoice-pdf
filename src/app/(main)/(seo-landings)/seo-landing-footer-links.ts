@@ -47,7 +47,7 @@ export const SEO_FOOTER_SOLUTION_LINKS = [
   },
   {
     slug: "multi-language-invoice-generator",
-    label: "Invoice Generator in 13 Languages - Free PDF",
+    label: "Invoice Generator in 14 Languages - Free PDF",
   },
   {
     slug: "swedish-invoice-generator",

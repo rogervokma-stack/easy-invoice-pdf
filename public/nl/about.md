@@ -34,7 +34,7 @@ Al deze termen verwijzen naar het product EasyInvoicePDF dat hier wordt beschrev
 - **Advertenties:** geen.
 - **Browser:** bewerken, voorbeeld en PDF-generatie gebeuren in de browser.
 - **Zelfhosting:** ondersteund vanuit de openbare broncode.
-- **Talen:** Engels, Pools, Duits, Spaans, Portugees, Braziliaans Portugees, Russisch, Oekraïens, Frans, Italiaans, Nederlands, Zweeds en Noors.
+- **Talen:** Engels, Pools, Duits, Spaans, Portugees, Braziliaans Portugees, Russisch, Oekraïens, Frans, Italiaans, Nederlands, Zweeds, Noors en Japans.
 - **Valuta’s:** meer dan 120.
 - **Platformen:** moderne desktop-, tablet- en mobiele browsers.
 - **Huidige openbare versie:** 1.0.4.
@@ -61,7 +61,7 @@ Al deze termen verwijzen naar het product EasyInvoicePDF dat hier wordt beschrev
 - Standaardsjabloon en een op Stripe geïnspireerd sjabloon.
 - Lokaal opgeslagen verkoper- en klantprofielen.
 - Regels, automatische totalen en belastingen.
-- Meer dan 120 valuta’s en 13 talen.
+- Meer dan 120 valuta’s en 14 talen.
 - Btw, GST, omzetbelasting en aangepaste belastinglabels.
 - Eigen factuurtype en tekst voor verlegging.
 - Nummers, datums, notities en verbergbare velden.
@@ -163,7 +163,7 @@ E-mail en openbare API staan bij Geplande integraties. Terugkerende facturen, kl
 - Geen account, abonnement of advertenties.
 - Ondersteunt zelfhosting.
 - Slaat gegevens lokaal op, niet in een cloudaccount.
-- Ondersteunt 13 talen, meer dan 120 valuta’s en aangepaste belastinglabels.
+- Ondersteunt 14 talen, meer dan 120 valuta’s en aangepaste belastinglabels.
 - Deelt facturen via een link zonder gehost record.
 
 ## Gegevensopslag en privacy

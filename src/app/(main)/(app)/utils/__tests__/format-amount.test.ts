@@ -48,6 +48,7 @@ const AMOUNT_PER_LOCALE: Record<SupportedNumberFormatLocale, string> = {
   es: "321.200,00",
   sv: `321${NBSP}200,00`,
   uk: `321${NBSP}200,00`,
+  ja: "321,200.00",
 };
 
 describe("formatAmount", () => {

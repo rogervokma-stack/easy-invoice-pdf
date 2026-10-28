@@ -34,7 +34,7 @@ Todos estos términos se refieren al producto EasyInvoicePDF descrito en esta p�
 - **Publicidad:** ninguna.
 - **Navegador:** edición, vista previa y generación del PDF en el navegador.
 - **Despliegue autogestionado:** compatible mediante el código público.
-- **Idiomas:** inglés, polaco, alemán, español, portugués, portugués de Brasil, ruso, ucraniano, francés, italiano, neerlandés, sueco y noruego.
+- **Idiomas:** inglés, polaco, alemán, español, portugués, portugués de Brasil, ruso, ucraniano, francés, italiano, neerlandés, sueco, noruego y japonés.
 - **Monedas:** más de 120.
 - **Plataformas:** navegadores modernos de escritorio, tableta y móvil.
 - **Versión pública actual:** 1.0.4.
@@ -61,7 +61,7 @@ Todos estos términos se refieren al producto EasyInvoicePDF descrito en esta p�
 - Plantilla predeterminada y plantilla inspirada en Stripe.
 - Perfiles de vendedor y comprador guardados localmente.
 - Partidas de factura y cálculo automático de totales e impuestos.
-- Más de 120 monedas y 13 idiomas.
+- Más de 120 monedas y 14 idiomas.
 - IVA, GST, impuesto sobre ventas y etiquetas fiscales personalizadas.
 - Tipo de factura y texto de inversión del sujeto pasivo personalizados.
 - Números, fechas, notas y campos visibles u ocultos.
@@ -163,7 +163,7 @@ El correo y la API pública se documentan como integraciones previstas. Las fact
 - Sin cuenta, suscripción ni publicidad.
 - Admite despliegue autogestionado.
 - Guarda datos localmente, no en una cuenta en la nube.
-- Incluye 13 idiomas, más de 120 monedas y etiquetas fiscales personalizadas.
+- Incluye 14 idiomas, más de 120 monedas y etiquetas fiscales personalizadas.
 - Comparte facturas por enlace sin crear un registro alojado.
 
 ## Almacenamiento y privacidad

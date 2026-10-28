@@ -489,6 +489,42 @@ const EXPECTED = {
       "ni hundre og nittini milliarder ni hundre og nittini millioner ni hundre og nittini tusen ni hundre og nittini",
     ],
   ],
+  /**
+   * Japanese has no `n2words` counterpart either, so these rows are read from the grammar:
+   * groups of four digits under 万 and 億, no 一 before 十/百/千 but one before 万/億, and
+   * empty groups skipped together with their scale word.
+   */
+  ja: [
+    [0, "零"],
+    [1, "一"],
+    [10, "十"],
+    [11, "十一"],
+    [19, "十九"],
+    [21, "二十一"],
+    [42, "四十二"],
+    [80, "八十"],
+    [99, "九十九"],
+    [100, "百"],
+    [101, "百一"],
+    [111, "百十一"],
+    [200, "二百"],
+    [999, "九百九十九"],
+    [1000, "千"],
+    [1001, "千一"],
+    [1234, "千二百三十四"],
+    [2021, "二千二十一"],
+    [9999, "九千九百九十九"],
+    [10_000, "一万"],
+    [10_001, "一万一"],
+    [12_345, "一万二千三百四十五"],
+    [123_456, "十二万三千四百五十六"],
+    [1_000_000, "百万"],
+    [10_000_000, "千万"],
+    [100_000_000, "一億"],
+    [100_000_005, "一億五"],
+    [1_234_567_890, "十二億三千四百五十六万七千八百九十"],
+    [999_999_999_999, "九千九百九十九億九千九百九十九万九千九百九十九"],
+  ],
 } satisfies Record<SupportedLanguages, readonly (readonly [number, string])[]>;
 
 describe.each(SUPPORTED_INVOICE_PDF_LANGUAGES)(

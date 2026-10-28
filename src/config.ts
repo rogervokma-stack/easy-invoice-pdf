@@ -297,7 +297,17 @@ export const INVOICE_PDF_FONTS = {
     INTER_MEDIUM: `${STATIC_ASSETS_URL}/Inter-Medium.ttf`,
     INTER_SEMIBOLD: `${STATIC_ASSETS_URL}/Inter-SemiBold.ttf`,
   },
+  /**
+   * Neither Open Sans nor Inter has kanji or kana, so a Japanese invoice is set in Noto Sans
+   * JP in both templates (the static Regular and Bold from Google Fonts, SIL Open Font
+   * License). They are several megabytes each, which is why only a Japanese invoice loads
+   * them -- see `invoice-templates/common/japanese-text.ts`.
+   */
+  JAPANESE: {
+    NOTO_SANS_JP_REGULAR: `${STATIC_ASSETS_URL}/NotoSansJP-Regular.ttf`,
+    NOTO_SANS_JP_700: `${STATIC_ASSETS_URL}/NotoSansJP-Bold.ttf`,
+  },
 } as const satisfies Record<
-  "DEFAULT_TEMPLATE" | "STRIPE_TEMPLATE",
+  "DEFAULT_TEMPLATE" | "STRIPE_TEMPLATE" | "JAPANESE",
   { [key: string]: string }
 >;

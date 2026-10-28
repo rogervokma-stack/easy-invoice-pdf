@@ -12,6 +12,11 @@ import {
 import dayjs from "dayjs";
 
 import { InvoiceQRCode } from "@/app/(main)/(app)/components/invoice-templates/common/invoice-qr-code";
+import {
+  hyphenateJapanese,
+  JAPANESE_FONT,
+  withJapaneseFont,
+} from "@/app/(main)/(app)/components/invoice-templates/common/japanese-text";
 import { formatCurrencyChunks } from "@/app/(main)/(app)/utils/format-currency";
 import { type InvoiceData, resolveNumberFormatLocale } from "@/app/schema";
 import { INVOICE_PDF_FONTS } from "@/config";
@@ -29,6 +34,7 @@ import "dayjs/locale/en";
 import "dayjs/locale/es";
 import "dayjs/locale/fr";
 import "dayjs/locale/it";
+import "dayjs/locale/ja";
 import "dayjs/locale/nb";
 import "dayjs/locale/nl";
 import "dayjs/locale/pl";
@@ -60,6 +66,9 @@ Font.register({
     },
   ],
 });
+
+Font.register(JAPANESE_FONT);
+Font.registerHyphenationCallback(hyphenateJapanese);
 
 // Stripe-inspired styles
 export const STRIPE_TEMPLATE_STYLES = StyleSheet.create({
@@ -273,6 +282,11 @@ export const STRIPE_TEMPLATE_STYLES = StyleSheet.create({
   },
 } as const satisfies Styles);
 
+/** The same styles in Noto Sans JP, for a Japanese invoice: Inter has no kanji or kana. */
+const STRIPE_TEMPLATE_STYLES_JAPANESE = withJapaneseFont(
+  STRIPE_TEMPLATE_STYLES,
+);
+
 export function StripeInvoicePdfTemplate({
   invoiceData,
   qrCodeDataUrl,
@@ -282,6 +296,10 @@ export function StripeInvoicePdfTemplate({
 }) {
   const language = invoiceData.language;
   const numberFormatLocale = resolveNumberFormatLocale(invoiceData);
+  const styles =
+    language === "ja"
+      ? STRIPE_TEMPLATE_STYLES_JAPANESE
+      : STRIPE_TEMPLATE_STYLES;
 
   // Set dayjs locale based on invoice language
   dayjs.locale(language);
@@ -335,29 +353,20 @@ export function StripeInvoicePdfTemplate({
 
   return (
     <Document title={invoiceDocTitle}>
-      <Page size={"LETTER"} style={STRIPE_TEMPLATE_STYLES.page}>
+      <Page size={"LETTER"} style={styles.page}>
         {/* Yellow header bar */}
-        <View style={STRIPE_TEMPLATE_STYLES.headerBar} />
+        <View style={styles.headerBar} />
 
         {/* Main content */}
-        <View style={STRIPE_TEMPLATE_STYLES.content}>
+        <View style={styles.content}>
           {/* Header with Invoice title */}
-          <StripeInvoiceHeader
-            invoiceData={invoiceData}
-            styles={STRIPE_TEMPLATE_STYLES}
-          />
+          <StripeInvoiceHeader invoiceData={invoiceData} styles={styles} />
 
           {/* Invoice basic info */}
-          <StripeInvoiceInfo
-            invoiceData={invoiceData}
-            styles={STRIPE_TEMPLATE_STYLES}
-          />
+          <StripeInvoiceInfo invoiceData={invoiceData} styles={styles} />
 
           {/* Seller and buyer info */}
-          <StripeSellerBuyerInfo
-            invoiceData={invoiceData}
-            styles={STRIPE_TEMPLATE_STYLES}
-          />
+          <StripeSellerBuyerInfo invoiceData={invoiceData} styles={styles} />
 
           {/* Due amount highlight */}
           <View style={{ marginBottom: -16 }}>
@@ -365,33 +374,24 @@ export function StripeInvoicePdfTemplate({
             <StripeDueAmount
               invoiceData={invoiceData}
               formattedInvoiceTotal={formattedInvoiceTotalWithCurrency}
-              styles={STRIPE_TEMPLATE_STYLES}
+              styles={styles}
             />
           </View>
 
           {/* Items table */}
-          <StripeItemsTable
-            invoiceData={invoiceData}
-            styles={STRIPE_TEMPLATE_STYLES}
-          />
+          <StripeItemsTable invoiceData={invoiceData} styles={styles} />
 
           {/* VAT summary table (VAT rates, net amounts, VAT amounts, pre-tax amounts) */}
           <StripeVatSummaryTableTotals
             invoiceData={invoiceData}
             invoiceTotalChunks={invoiceTotalWithCurrencyChunks}
-            styles={STRIPE_TEMPLATE_STYLES}
+            styles={styles}
           />
 
           {/* Notes */}
           {invoiceData.notesFieldIsVisible && invoiceData.notes ? (
-            <View
-              style={[STRIPE_TEMPLATE_STYLES.mt24]}
-              wrap={false}
-              minPresenceAhead={50}
-            >
-              <Text style={[STRIPE_TEMPLATE_STYLES.fontSize10]}>
-                {invoiceData.notes}
-              </Text>
+            <View style={[styles.mt24]} wrap={false} minPresenceAhead={50}>
+              <Text style={[styles.fontSize10]}>{invoiceData.notes}</Text>
             </View>
           ) : null}
 
@@ -408,7 +408,7 @@ export function StripeInvoicePdfTemplate({
         <StripeFooter
           invoiceData={invoiceData}
           formattedInvoiceTotal={formattedInvoiceTotalWithCurrency}
-          styles={STRIPE_TEMPLATE_STYLES}
+          styles={styles}
         />
       </Page>
     </Document>

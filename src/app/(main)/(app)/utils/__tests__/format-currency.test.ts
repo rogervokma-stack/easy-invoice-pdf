@@ -48,6 +48,7 @@ const EUR_PER_LOCALE: Record<SupportedNumberFormatLocale, string> = {
   es: `321.200,00${NBSP}${EURO}`,
   sv: `321${NBSP}200,00${NBSP}${EURO}`,
   uk: `321${NBSP}200,00${NBSP}EUR`,
+  ja: `${EURO}321,200.00`,
 };
 
 describe("formatCurrency", () => {

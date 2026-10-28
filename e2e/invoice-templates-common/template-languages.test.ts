@@ -45,6 +45,7 @@ const LANGUAGE_TO_CURRENCY = {
   it: "EUR",
   nb: "NOK",
   nl: "EUR",
+  ja: "JPY",
 } as const satisfies Record<SupportedLanguages, SupportedCurrencies>;
 
 const PDF_LANGUAGE_CASES = [

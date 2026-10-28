@@ -14,6 +14,7 @@ import "dayjs/locale/ru";
 import "dayjs/locale/uk";
 import "dayjs/locale/fr";
 import "dayjs/locale/it";
+import "dayjs/locale/ja";
 import "dayjs/locale/nl";
 
 /**

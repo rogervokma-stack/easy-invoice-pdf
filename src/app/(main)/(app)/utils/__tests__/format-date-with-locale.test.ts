@@ -31,6 +31,7 @@ const EXPECTED_LONG_DATE: Record<SupportedLanguages, string> = {
   it: "settembre 1, 2026",
   nb: "september 1, 2026",
   nl: "september 1, 2026",
+  ja: "9月 1, 2026",
 };
 
 describe("formatDateWithLocale", () => {

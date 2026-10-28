@@ -3,7 +3,11 @@
 import { Document, Font, Page, renderToBuffer } from "@react-pdf/renderer";
 import type dayjs from "dayjs";
 
-import { PDF_DEFAULT_TEMPLATE_STYLES } from "@/app/(main)/(app)/components/invoice-templates/invoice-pdf-default-template";
+import {
+  hyphenateJapanese,
+  JAPANESE_FONT,
+} from "@/app/(main)/(app)/components/invoice-templates/common/japanese-text";
+import { getPdfDefaultTemplateStyles } from "@/app/(main)/(app)/components/invoice-templates/invoice-pdf-default-template";
 import { InvoiceBody } from "@/app/(main)/(app)/components/invoice-templates/invoice-pdf-default-template/invoice-body";
 import { INVOICE_PDF_TRANSLATIONS } from "@/app/(main)/(app)/pdf-i18n-translations/pdf-translations";
 import { getInvoiceDefaultNumberValue } from "@/app/constants";
@@ -30,6 +34,9 @@ Font.register({
   ],
 });
 
+Font.register(JAPANESE_FONT);
+Font.registerHyphenationCallback(hyphenateJapanese);
+
 /**
  * This component is used to render the invoice PDF template on the backend
  *
@@ -47,12 +54,14 @@ const InvoicePdfTemplateToRenderOnBackend = ({
   const invoiceNumber = `${invoiceNumberLabel} ${invoiceNumberValue}`;
   const invoiceDocTitle = `${invoiceNumber} | Created with https://easyinvoicepdf.com`;
 
+  const styles = getPdfDefaultTemplateStyles(invoiceData.language);
+
   return (
     <Document title={invoiceDocTitle}>
-      <Page size="A4" style={PDF_DEFAULT_TEMPLATE_STYLES.page}>
+      <Page size="A4" style={styles.page}>
         <InvoiceBody
           invoiceData={invoiceData}
-          styles={PDF_DEFAULT_TEMPLATE_STYLES}
+          styles={styles}
           shouldLocaliseDates={false}
         />
       </Page>

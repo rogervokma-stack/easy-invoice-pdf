@@ -37,6 +37,7 @@ const AMOUNT_IN_WORDS_BY_LANGUAGE = {
   it: "milleduecentotrentaquattro",
   nb: "ett tusen to hundre og trettifire",
   nl: "twaalfhonderd vierendertig",
+  ja: "千二百三十四",
 } as const satisfies Record<
   (typeof SUPPORTED_INVOICE_PDF_LANGUAGES)[number],
   string

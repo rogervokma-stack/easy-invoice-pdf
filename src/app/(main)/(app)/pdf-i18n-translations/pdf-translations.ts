@@ -1279,6 +1279,108 @@ export const INVOICE_PDF_TRANSLATIONS = {
       discountOff: "rabatt",
     },
   },
+  ja: {
+    invoiceNumber: "請求書番号",
+    dateOfIssue: "発行日",
+    dateOfService: "取引日",
+    servicePeriod: "対象期間",
+    invoiceType: "請求書の種類",
+    /**
+     * "登録番号" is the registration number of Japan's qualified invoice system (T and 13
+     * digits, since October 2023): the number a Japanese invoice carries where a European
+     * one carries the VAT number, and the one a buyer needs to deduct the consumption tax.
+     */
+    seller: {
+      name: "請求元",
+      vatNo: "登録番号",
+      email: "メール",
+      accountNumber: "口座番号",
+      swiftBic: "SWIFT/BIC",
+    },
+    buyer: {
+      name: "請求先",
+      vatNo: "登録番号",
+      email: "メール",
+    },
+    invoiceItemsTable: {
+      no: "No.",
+      nameOfGoodsService: "品名・サービス名",
+      typeOfGTU: "GTU区分",
+      amount: "数量",
+      unit: "単位",
+      netPrice: () => {
+        return `税抜単価`;
+      },
+      vat: "消費税",
+      /**
+       * Japanese is written without spaces, so a narrow column may break a label anywhere.
+       * The break is placed between the two words instead ("税抜" + "金額"), the same way
+       * the other languages break their two-word labels.
+       */
+      netAmount: () => {
+        return `税抜\n金額`;
+      },
+      vatAmount: ({ customTaxLabel }) => {
+        return `${customTaxLabel || "消費税"}額`;
+      },
+      preTaxAmount: () => {
+        return `税込\n金額`;
+      },
+      sum: "合計",
+      discount: "値引き",
+    },
+    paymentInfo: {
+      paymentMethod: "支払方法",
+      paymentDate: "支払期限",
+    },
+    vatSummaryTable: {
+      vatRate: ({ customTaxLabel }) => {
+        return `${customTaxLabel || "消費税"}率`;
+      },
+      net: () => {
+        return `税抜`;
+      },
+      vat: "消費税",
+      preTax: () => {
+        return `税込`;
+      },
+      total: "合計",
+    },
+    paymentTotals: {
+      toPay: "ご請求金額",
+      paid: "支払済み",
+      leftToPay: "未払い残高",
+      amountInWords: "金額（漢数字）",
+    },
+    personAuthorizedToReceive: "受領担当者",
+    personAuthorizedToIssue: "発行担当者",
+    createdWith: "作成ツール",
+    stripe: {
+      invoice: "請求書",
+      invoiceNumber: "請求書番号",
+      dateOfIssue: "発行日",
+      dateDue: "支払期限",
+      servicePeriod: "対象期間",
+      billTo: "請求先",
+      due: "支払期限",
+      payOnline: "オンラインで支払う",
+      description: "内容",
+      qty: "数量",
+      unit: "単位",
+      unitPrice: "単価",
+      amount: "金額",
+      tax: "消費税",
+      subtotal: "小計",
+      totalExcludingTax: "合計（税抜）",
+      total: "合計",
+      amountDue: "ご請求金額",
+      page: "ページ",
+      of: "/",
+      discount: "値引き",
+      taxOn: "対象",
+      discountOff: "オフ",
+    },
+  },
 } as const satisfies Record<SupportedLanguages, TranslationSchema>;
 
 /**

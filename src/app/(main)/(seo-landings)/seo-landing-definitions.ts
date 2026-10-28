@@ -227,7 +227,7 @@ export const SEO_LANDING_DEFINITIONS = {
       bullets: [
         "A finished PDF in about a minute",
         "No account, no email, no credit card",
-        "13 languages and 122 currencies",
+        "14 languages and 122 currencies",
         "Free and open source under AGPL-3.0",
         "No ads and no tracking pixels",
       ],
@@ -258,7 +258,7 @@ export const SEO_LANDING_DEFINITIONS = {
           label: "Templates",
           value: "A default layout and a Stripe-style one",
         },
-        { label: "Languages on the PDF", value: "13" },
+        { label: "Languages on the PDF", value: "14" },
         {
           label: "Currencies",
           value: "122, picked separately from the language",
@@ -298,7 +298,7 @@ export const SEO_LANDING_DEFINITIONS = {
           "Two layouts: a plain default one and a Stripe-style one",
           "Upload a logo as JPEG, PNG or WebP up to 3MB, and it prints on either",
           "Rename the tax label to VAT, GST, Sales Tax, Moms or whatever applies to you",
-          "Pick from 13 languages for the PDF and 122 currencies, independently",
+          "Pick from 14 languages for the PDF and 122 currencies, independently",
           "Line items total themselves as you type, tax included",
           "The total is written out in words, following the grammar of the language you picked",
         ],
@@ -346,7 +346,7 @@ export const SEO_LANDING_DEFINITIONS = {
         },
         {
           feature: "Languages on the PDF",
-          thisTool: "✅ 13",
+          thisTool: "✅ 14",
           other: "⚠️ Usually one",
         },
         {
@@ -428,7 +428,7 @@ export const SEO_LANDING_DEFINITIONS = {
         "AGPL-3.0, source public on GitHub",
         "Fork it or host it yourself",
         "PDF rendered in your browser",
-        "13 languages and 122 currencies",
+        "14 languages and 122 currencies",
         "No account, no ads",
       ],
       ctaLabel: "Create and Download a PDF",
@@ -460,7 +460,7 @@ export const SEO_LANDING_DEFINITIONS = {
           value: "Clone it, install with pnpm, deploy anywhere Next.js runs",
         },
         { label: "Account required", value: "No" },
-        { label: "Languages on the PDF", value: "13" },
+        { label: "Languages on the PDF", value: "14" },
         { label: "Currencies", value: "122" },
         { label: "Price", value: "Free, hosted and self-hosted alike" },
       ],
@@ -607,7 +607,7 @@ export const SEO_LANDING_DEFINITIONS = {
         "The Stripe-style invoice layout",
         "No Stripe account and no dashboard",
         "Your logo on the invoice",
-        "122 currencies and 13 languages",
+        "122 currencies and 14 languages",
         "Free, with no signup",
       ],
       ctaLabel: "Create a Stripe-Style Invoice",
@@ -635,7 +635,7 @@ export const SEO_LANDING_DEFINITIONS = {
         },
         { label: "Your logo", value: "JPEG, PNG or WebP, up to 3MB" },
         { label: "Currencies", value: "122" },
-        { label: "Languages on the PDF", value: "13" },
+        { label: "Languages on the PDF", value: "14" },
         { label: "Price", value: "Free" },
       ],
     },
@@ -663,7 +663,7 @@ export const SEO_LANDING_DEFINITIONS = {
           "Long-form dates, such as December 17, 2025",
           "Amounts formatted the way the invoice language writes them, so SEK prints as 1 234,56 kr",
           "To pay, Paid and Left to pay, so a part-paid invoice is still legible",
-          "The total repeated in words, in whichever of the 13 languages you picked",
+          "The total repeated in words, in whichever of the 14 languages you picked",
         ],
       },
       {
@@ -785,7 +785,7 @@ export const SEO_LANDING_DEFINITIONS = {
         "No formulas and no broken tables",
         "Totals and tax calculate as you type",
         "Two layouts, your logo on either",
-        "13 languages and 122 currencies",
+        "14 languages and 122 currencies",
         "Free, with no signup",
       ],
       ctaLabel: "Fill In and Download a PDF",
@@ -827,7 +827,7 @@ export const SEO_LANDING_DEFINITIONS = {
           value: "A plain default one and a Stripe-style one",
         },
         { label: "Your logo", value: "JPEG, PNG or WebP, up to 3MB" },
-        { label: "Languages on the PDF", value: "13" },
+        { label: "Languages on the PDF", value: "14" },
         { label: "Currencies", value: "122" },
         {
           label: "Date formats",
@@ -872,7 +872,7 @@ export const SEO_LANDING_DEFINITIONS = {
         bullets: [
           "Rename the tax label to VAT, GST, Sales Tax, Moms or MVA",
           "Pick any of 122 currencies, each with its own symbol and separators",
-          "Pick any of 13 languages, and every printed label changes with it",
+          "Pick any of 14 languages, and every printed label changes with it",
           "Choose the date format, including ISO 2025-12-17 for cross-border work",
           "Upload a logo up to 3MB as JPEG, PNG or WebP",
           "Hide the fields you do not use, so the PDF has no empty rows",
@@ -932,7 +932,7 @@ export const SEO_LANDING_DEFINITIONS = {
         },
         {
           feature: "Languages on the document",
-          thisTool: "✅ 13",
+          thisTool: "✅ 14",
           other: "❌ Translate it yourself",
         },
         {
@@ -1003,24 +1003,24 @@ export const SEO_LANDING_DEFINITIONS = {
   "multi-language-invoice-generator": {
     slug: "multi-language-invoice-generator",
     metadata: {
-      title: "Multi-Language Invoice Generator - Free PDF, 13 Languages",
+      title: "Multi-Language Invoice Generator - Free PDF, 14 Languages",
       description:
-        "Create a professional invoice in 13 languages, from Swedish to Brazilian Portuguese. Labels, dates and the amount in words are all localized. Free, no signup.",
+        "Create a professional invoice in 14 languages, from Swedish to Brazilian Portuguese. Labels, dates and the amount in words are all localized. Free, no signup.",
       keywords:
         "multi language invoice generator, invoice in spanish, invoice in german, invoice in french, invoice in different languages, multilingual invoice template, swedish invoice generator, norwegian invoice generator, german invoice template, spanish invoice generator, brazilian portuguese invoice generator, invoice amount in words, foreign language invoice, international invoice PDF",
     },
     hero: {
-      h1: "Invoice Generator in 13 Languages - Free PDF",
+      h1: "Invoice Generator in 14 Languages - Free PDF",
       // sky-200
       h1Mark: {
-        phrase: "13 Languages",
+        phrase: "14 Languages",
         type: "highlight",
         color: "rgb(186 230 253)",
       },
       subheading:
         "Pick a language and the whole invoice follows: every label, the date format, the tax wording and the amount written out in words. Free, in your browser, with no signup.",
       bullets: [
-        "13 languages, including Brazilian Portuguese and Swedish",
+        "14 languages, including Brazilian Portuguese and Swedish",
         "Dates and tax wording follow each language",
         "Amount in words, grammatically correct",
         "122 currencies, chosen separately",
@@ -1093,7 +1093,7 @@ export const SEO_LANDING_DEFINITIONS = {
         ],
       },
       {
-        title: "All 13 languages, and their word for invoice",
+        title: "All 14 languages, and their word for invoice",
         lead: "Each language titles the PDF with its own word for invoice. This is what the Stripe-style template prints at the top of the page:",
         bullets: [
           "English: Invoice",
@@ -1151,7 +1151,7 @@ export const SEO_LANDING_DEFINITIONS = {
         },
         {
           feature: "Amount in words",
-          thisTool: "✅ 13 languages",
+          thisTool: "✅ 14 languages",
           other: "❌ Rarely",
         },
         {
@@ -1177,7 +1177,7 @@ export const SEO_LANDING_DEFINITIONS = {
       {
         question: "Which languages can I create an invoice in?",
         answer:
-          "Thirteen: English, Polish, Dutch, French, German, Italian, Norwegian, Portuguese, Brazilian Portuguese, Russian, Spanish, Swedish and Ukrainian. Brazilian Portuguese is the newest addition, and it prints a different invoice from the European one rather than the same one spelled differently.",
+          "Fourteen: English, Polish, Dutch, French, German, Italian, Japanese, Norwegian, Portuguese, Brazilian Portuguese, Russian, Spanish, Swedish and Ukrainian. Brazilian Portuguese is the newest addition, and it prints a different invoice from the European one rather than the same one spelled differently.",
       },
       {
         question: "Does changing the language change the currency?",
@@ -1301,7 +1301,7 @@ export const SEO_LANDING_DEFINITIONS = {
         lead: "Swedish invoices commonly repeat the total in words under the figure, and Swedish writes those words as a single compound.",
         paragraphs: [
           "The generator spells 1234 as ettusentvåhundratrettiofyra. That includes the detail Swedish spelling depends on. Ett and tusen join as ettusen, because Swedish writes a tripled consonant as two.",
-          "Most invoice tools that offer a Swedish interface still print this line in English, or skip it. Here it follows the grammar of whichever of the 13 languages you pick.",
+          "Most invoice tools that offer a Swedish interface still print this line in English, or skip it. Here it follows the grammar of whichever of the 14 languages you pick.",
         ],
       },
       {
@@ -2213,7 +2213,7 @@ export const SEO_LANDING_DEFINITIONS = {
         "Bill a client for a project, a retainer or a month of hours. Fill in the form, watch the PDF redraw beside it, and download it. Your details stay saved in your browser, so the next invoice takes a minute.",
       bullets: [
         "Your details saved for the next invoice",
-        "122 currencies, 13 invoice languages",
+        "122 currencies, 14 invoice languages",
         "Share a link instead of attaching a file",
         "Free and open source, no signup",
       ],
@@ -2225,7 +2225,7 @@ export const SEO_LANDING_DEFINITIONS = {
       heading: "Freelance invoices at a glance",
       rows: [
         { label: "Currencies", value: "122, each with its own symbol" },
-        { label: "Invoice languages", value: "13" },
+        { label: "Invoice languages", value: "14" },
         {
           label: "Templates",
           value: "A classic layout and a Stripe-style one",
@@ -2308,7 +2308,7 @@ export const SEO_LANDING_DEFINITIONS = {
         },
         {
           feature: "Languages on the PDF",
-          thisTool: "✅ 13",
+          thisTool: "✅ 14",
           other: "⚠️ Varies",
         },
         { feature: "Open source", thisTool: "✅ AGPL-3.0", other: "❌ Rarely" },
@@ -2501,7 +2501,7 @@ export const SEO_LANDING_DEFINITIONS = {
       {
         question: "Can I write the proforma in another language?",
         answer:
-          "Yes. The PDF can be printed in 13 languages, and the label you type replaces the default title in any of them.",
+          "Yes. The PDF can be printed in 14 languages, and the label you type replaces the default title in any of them.",
       },
       {
         question: "Do I need an account?",

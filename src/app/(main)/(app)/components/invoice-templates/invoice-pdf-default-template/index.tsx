@@ -6,9 +6,14 @@ import {
   type Styles,
 } from "@react-pdf/renderer/lib/react-pdf.browser";
 
-import { type InvoiceData } from "@/app/schema";
+import { type InvoiceData, type SupportedLanguages } from "@/app/schema";
 import { INVOICE_PDF_FONTS } from "@/config";
 
+import {
+  hyphenateJapanese,
+  JAPANESE_FONT,
+  withJapaneseFont,
+} from "../common/japanese-text";
 import { InvoiceBody } from "./invoice-body";
 
 // Open sans seems to be working fine with EN and PL
@@ -27,6 +32,9 @@ Font.register({
     },
   ],
 });
+
+Font.register(JAPANESE_FONT);
+Font.registerHyphenationCallback(hyphenateJapanese);
 
 // Styles for the PDF
 export const PDF_DEFAULT_TEMPLATE_STYLES = StyleSheet.create({
@@ -194,6 +202,20 @@ export const PDF_DEFAULT_TEMPLATE_STYLES = StyleSheet.create({
   },
 } as const satisfies Styles);
 
+const PDF_DEFAULT_TEMPLATE_STYLES_JAPANESE = withJapaneseFont(
+  PDF_DEFAULT_TEMPLATE_STYLES,
+);
+
+/**
+ * The default template's styles for an invoice language: the same styles in Noto Sans JP for
+ * a Japanese invoice, whose text Open Sans cannot draw.
+ */
+export function getPdfDefaultTemplateStyles(language: SupportedLanguages) {
+  return language === "ja"
+    ? PDF_DEFAULT_TEMPLATE_STYLES_JAPANESE
+    : PDF_DEFAULT_TEMPLATE_STYLES;
+}
+
 // Memoize the PDF Document component
 export function InvoicePdfTemplate({
   invoiceData,
@@ -210,12 +232,14 @@ export function InvoicePdfTemplate({
   const invoiceDocTitle =
     `${invoiceNumber} | Created with https://easyinvoicepdf.com` as const;
 
+  const styles = getPdfDefaultTemplateStyles(invoiceData.language);
+
   return (
     <Document title={invoiceDocTitle}>
-      <Page size="A4" style={PDF_DEFAULT_TEMPLATE_STYLES.page}>
+      <Page size="A4" style={styles.page}>
         <InvoiceBody
           invoiceData={invoiceData}
-          styles={PDF_DEFAULT_TEMPLATE_STYLES}
+          styles={styles}
           qrCodeDataUrl={qrCodeDataUrl}
         />
       </Page>

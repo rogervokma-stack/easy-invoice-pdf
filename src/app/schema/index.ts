@@ -682,6 +682,7 @@ export const SUPPORTED_INVOICE_PDF_LANGUAGES = [
   "fr",
   "de",
   "it",
+  "ja",
   "nb",
   "pt",
   "pt-BR",
@@ -733,6 +734,7 @@ export const LANGUAGE_TO_LABEL = {
   fr: "French",
   de: "German",
   it: "Italian",
+  ja: "Japanese",
   nb: "Norwegian",
   pt: "Portuguese",
   "pt-BR": "Portuguese (BR)",
@@ -774,6 +776,7 @@ export const LANGUAGE_TO_NATIVE_LABEL = {
   fr: "Français",
   de: "Deutsch",
   it: "Italiano",
+  ja: "日本語",
   nb: "Norsk bokmål",
   pt: "Português",
   "pt-BR": "Português (Brasil)",
@@ -795,6 +798,7 @@ export const SUPPORTED_DATE_FORMATS = [
   "D [de] MMMM [de] YYYY", // 20 de marzo de 2024 (Spanish and Portuguese long date)
   "D MMMM YYYY [г.]", // 20 марта 2024 г. (Russian long date)
   "D MMMM YYYY [р.]", // 20 березня 2024 р. (Ukrainian long date)
+  "YYYY[年]M[月]D[日]", // 2024年3月20日 (Japanese long date)
   "D MMM YYYY", // 20 Mar 2024
   "MMMM D, YYYY", // March 20, 2024 (Stripe template default date format)
   "MMM D, YYYY", // Mar 20, 2024
@@ -810,19 +814,21 @@ export const STRIPE_DEFAULT_DATE_FORMAT = "MMMM D, YYYY";
 /**
  * The long date each language writes by convention, used by the Stripe template.
  *
- * English leads with the month ("December 17, 2025"); every other language here leads with
- * the day. That is not only word order: dayjs chooses the grammatical case of the month
- * name from its position, so Polish, Russian and Ukrainian are only correct with the day in
- * front -- "17 grudnia 2025", where "grudzień 17, 2025" puts the month in the nominative
- * and reads like a column heading rather than a date.
+ * English leads with the month ("December 17, 2025"), Japanese with the year; every other
+ * language here leads with the day. That is not only word order: dayjs chooses the
+ * grammatical case of the month name from its position, so Polish, Russian and Ukrainian are
+ * only correct with the day in front -- "17 grudnia 2025", where "grudzień 17, 2025" puts the
+ * month in the nominative and reads like a column heading rather than a date.
  *
- * Five of them carry punctuation the bare day-month-year cannot express, so they get their
+ * Six of them carry punctuation the bare day-month-year cannot express, so they get their
  * own tokens: the ordinal period in German's "17. Dezember 2025", the connectors in Spanish
- * and Portuguese's "17 de diciembre de 2025", and the year marker that a spelled-out date
+ * and Portuguese's "17 de diciembre de 2025", the year marker that a spelled-out date
  * takes in a Russian or Ukrainian document -- "17 декабря 2025 г.", "17 грудня 2025 р.",
- * where dropping the "г."/"р." leaves the date reading like a sentence fragment.
+ * where dropping the "г."/"р." leaves the date reading like a sentence fragment -- and the
+ * year, month and day markers of Japanese's "2025年12月17日", which has no month names to
+ * spell out and writes the date with numbers and those three characters instead.
  *
- * All five read as nonsense in any other language ("17 de december de 2025"), so a picker
+ * All six read as nonsense in any other language ("17 de december de 2025"), so a picker
  * only offers a language the ones that belong to it; see {@link getDateFormatsForLanguage}.
  */
 export const LANGUAGE_TO_LONG_DATE_FORMAT = {
@@ -832,6 +838,7 @@ export const LANGUAGE_TO_LONG_DATE_FORMAT = {
   fr: "D MMMM YYYY",
   de: "D. MMMM YYYY",
   it: "D MMMM YYYY",
+  ja: "YYYY[年]M[月]D[日]",
   nb: "D. MMMM YYYY",
   pt: "D [de] MMMM [de] YYYY",
   "pt-BR": "D [de] MMMM [de] YYYY",
@@ -856,6 +863,7 @@ const LANGUAGE_SPECIFIC_DATE_FORMATS = [
   "D [de] MMMM [de] YYYY",
   "D MMMM YYYY [г.]",
   "D MMMM YYYY [р.]",
+  "YYYY[年]M[月]D[日]",
 ] as const satisfies readonly (typeof SUPPORTED_DATE_FORMATS)[number][];
 
 /**

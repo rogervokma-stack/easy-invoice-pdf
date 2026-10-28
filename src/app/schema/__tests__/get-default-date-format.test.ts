@@ -6,10 +6,17 @@ import {
   getDefaultDateFormat,
   STRIPE_DEFAULT_DATE_FORMAT,
   SUPPORTED_INVOICE_PDF_LANGUAGES,
+  type SupportedLanguages,
 } from "@/app/schema";
 
 /** A date whose day and month can never be confused for one another. */
 const DATE = "2025-12-17";
+
+/**
+ * The languages whose Stripe date does not lead with the day: the month leads in English,
+ * the year in Japanese.
+ */
+const NOT_DAY_FIRST = new Set<SupportedLanguages>(["en", "ja"]);
 
 describe("getDefaultDateFormat", () => {
   it.each(SUPPORTED_INVOICE_PDF_LANGUAGES)(
@@ -27,9 +34,22 @@ describe("getDefaultDateFormat", () => {
     );
   });
 
+  it("leads the Stripe template's date with the year in Japanese", () => {
+    const rendered = formatDateWithLocale({
+      date: DATE,
+      selectedDateFormat: getDefaultDateFormat({
+        language: "ja",
+        template: "stripe",
+      }),
+      language: "ja",
+    });
+
+    expect(rendered.startsWith("2025")).toBe(true);
+  });
+
   it.each(
     SUPPORTED_INVOICE_PDF_LANGUAGES.filter((language) => {
-      return language !== "en";
+      return !NOT_DAY_FIRST.has(language);
     }),
   )("leads the Stripe template's date with the day in %s", (language) => {
     const rendered = formatDateWithLocale({
